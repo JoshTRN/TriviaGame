@@ -5,27 +5,10 @@ var incorrectGuesses = 0
 var unanswered = 0
 var counter = 60
 
-/*===================Objects====================*/
+var myVar;
 
-var questions = [{
-	question: 'What was DeCartes famous argument?',
-	answer:  'Cogito ergo Sum'
-}, {
-	question: 'What problem is David Chalmers Famous For?',
-	answer: 'Hard Problem' 
-}, {
-	question: 'Who was the so-called founder of skeptical philosophy?',
-	answer: 'Pyhhro'
-}, {
-	question: 'What is the name of the philosopher who changed the way we think about epistemology',
-	answer: 'Edmund Gettier'
-}, {
-	question: 'The problem of induction is...?',
-	answer: 'Why should we think the future will resemble the past?'
-}, {
-	question: 'Which of these is NOT a theory of truth?',
-	answer: 'Platonic Theory'
-}]
+var answers = ['Cogito ergo Sum', 'Hard Problem', 'Pyhhro', 'Edmund Gettier', 'Platonic Theory']
+var newList = []
 
 
 /*==================Functions===================*/
@@ -33,14 +16,37 @@ var questions = [{
 function countdown () {
 	counter--
 	$('#counter').text(counter);
+
+	if (counter == 0) {
+		$('#questions').empty()
+		clearInterval(myVar)
+	}
 }
 
 function timer () {
-	setInterval(countdown, 1000);
-	console.log(counter);
+	myVar = setInterval(countdown, 1000);
+}
+
+
+function getUserAnswers() {
+	
 }
 
 timer()
+
+$("input[type='radio']").click(function(){
+
+
+            var answer = $('input:checked').parent().text()
+
+            console.log(answer)
+            
+            newList.push(answer)
+
+            console.log(newList)
+});
+
+
 
 /*===================On Click Events===========*/
 
