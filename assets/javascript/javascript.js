@@ -7,7 +7,7 @@ var counter = 60
 
 var myVar;
 
-var answers = ['Cogito ergo Sum', 'Hard Problem', 'Pyhhro', 'Edmund Gettier', 'Platonic Theory']
+var answers = ['Cogito Ergo Sum', 'Hard Problem', 'Pyhhro', 'Edmund Gettier', 'Why should we think the future will resemble the past?', 'Platonic Theory']
 var newList = []
 
 
@@ -19,7 +19,8 @@ function countdown () {
 
 	if (counter == 0) {
 		$('#questions').empty()
-		clearInterval(myVar)
+		clearInterval(myVar);
+		compareAnswers();
 	}
 }
 
@@ -28,28 +29,56 @@ function timer () {
 }
 
 
-function getUserAnswers() {
-	
+function compareAnswers () {
+	for (var i = 0; i < answers.length; i++) {
+		if (newList[i] === undefined) {
+			unanswered++
+		}
+		else if ((answers[i] === newList[i])) {
+			correctGuesses++
+		}
+		else {
+			incorrectGuesses ++
+		}
+	}
+}
+
+function displayResults() {
+
 }
 
 timer()
-
-$("input[type='radio']").click(function(){
-
-
-            var answer = $('input:checked').parent().text()
-
-            console.log(answer)
-            
-            newList.push(answer)
-
-            console.log(newList)
-});
 
 
 
 /*===================On Click Events===========*/
 
-$('#calculate').click(function () {
+$('#results').click(function () {
+	$('#questions').empty();
+	clearInterval(myVar);
+	compareAnswers();
+	$('<div>')
 
 })
+
+$("input[type='radio']").click(function(){
+
+	var qnum = $(this).attr('name')
+
+	var answer = $(this).attr('data-name')
+
+	console.log(qnum)
+	console.log(answer)
+
+	newList[qnum -1] = answer
+
+	console.log(newList)
+
+
+});
+
+
+
+
+
+
