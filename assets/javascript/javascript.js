@@ -21,6 +21,7 @@ function countdown () {
 		$('#questions').empty()
 		clearInterval(myVar);
 		compareAnswers();
+		displayResults();
 	}
 }
 
@@ -45,6 +46,9 @@ function compareAnswers () {
 
 function displayResults() {
 
+	$('#questions').append('<h3>Correct Guesses: ' + correctGuesses + '</h3>')
+	$('#questions').append('<h3>Incorrect Guesses: ' + incorrectGuesses + '</h3>')
+	$('#questions').append('<h3>Unanswered: ' + unanswered + '</h3>')
 }
 
 timer()
@@ -57,7 +61,8 @@ $('#results').click(function () {
 	$('#questions').empty();
 	clearInterval(myVar);
 	compareAnswers();
-	$('<div>')
+	displayResults();
+
 
 })
 
